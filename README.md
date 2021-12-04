@@ -1,5 +1,5 @@
 <h1 align="center">
-  # Lost Pets API
+  Lost Pets API
   <br />
 </h1>
 
