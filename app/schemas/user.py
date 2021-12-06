@@ -17,7 +17,7 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     id: int
-    items: List[LostPet] = []
+    lost_pets: List[LostPet] = []
 
     class Config:
         orm_mode = True

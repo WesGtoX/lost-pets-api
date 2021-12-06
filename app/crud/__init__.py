@@ -4,5 +4,6 @@ from app.crud.lost_pet_crud import (  # noqa
     get_lost_pets,
     get_lost_pet_by_id,
     update_lost_pet,
+    mark_lost_pet_as_found,
     remove_lost_pet
 )

@@ -14,4 +14,4 @@ class User(Base):
     phone = Column(String, index=True)
     address = Column(String, index=True)
 
-    lost_pets = relationship("LostPet", back_populates="owner")
+    lost_pets = relationship('LostPet', back_populates='owner')

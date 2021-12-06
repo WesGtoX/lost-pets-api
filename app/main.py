@@ -83,3 +83,13 @@ def remove_lost_pet_by_id(lost_pet_id: int, db: Session = Depends(dependencies.g
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Lost Pet not found')
 
     crud.remove_lost_pet(db=db, lost_pet_id=lost_pet_id)
+
+
+@app.post('/lost-pets/found/{lost_pet_id}', response_model=schemas.LostPet)
+def mark_lost_pet_found(lost_pet_id: int, db: Session = Depends(dependencies.get_db)) -> schemas.LostPet:
+    db_lost_pet = crud.get_lost_pet_by_id(db=db, lost_pet_id=lost_pet_id)
+
+    if not db_lost_pet:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Lost Pet not found')
+
+    return crud.mark_lost_pet_as_found(db=db, db_lost_pet=db_lost_pet)
