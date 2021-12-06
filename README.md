@@ -13,6 +13,7 @@
 </p>
 
 <p align="center">
+  <img alt="Lost Pets API CI" src="https://github.com/WesGtoX/lost-pets-api/actions/workflows/fastapi-app.yml/badge.svg" />
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/wesgtox/lost-pets-api?style=plastic" />
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/wesgtox/lost-pets-api?style=plastic" />
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/wesgtox/lost-pets-api?style=plastic" />
