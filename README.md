@@ -7,6 +7,7 @@
   <a href="#about-the-project">About</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#technology">Technology</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#getting-started">Getting Started</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#usage">Usage</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#roadmap">Roadmap</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#how-to-contribute">Contributing</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#license">License</a>
@@ -56,6 +57,11 @@ poetry install
 ```bash
 poetry run uvicorn app.main:app --reload
 ```
+
+
+## Usage
+
+[Lost Pets Documentation](https://lost-pets-wes.herokuapp.com/docs)
 
 
 ## Roadmap
