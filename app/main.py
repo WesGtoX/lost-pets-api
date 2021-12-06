@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, List
 from fastapi import FastAPI, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
@@ -48,9 +48,10 @@ def create_lost_pet(owner_id: int, lost_pet: schemas.LostPetCreate,
     return crud.create_lost_pet(db=db, lost_pet=lost_pet, user_id=owner_id)
 
 
-@app.post('/list')
-async def read_lost_pets():
-    return {}
+@app.get('/lost-pets', response_model=List[schemas.LostPet])
+def read_lost_pets(skip: int = 0, limit: int = 100,
+                   db: Session = Depends(dependencies.get_db)) -> List[schemas.LostPet]:
+    return crud.get_lost_pets(db=db, skip=skip, limit=limit)
 
 
 @app.get('/lost-pets/{lost_pet_id}', response_model=schemas.LostPet)
