@@ -64,16 +64,22 @@ def read_lost_pet_by_id(lost_pet_id: int, db: Session = Depends(dependencies.get
     return lost_pet
 
 
-@app.put('/update/{id}')
-async def update_lost_pet_by_id():
-    return {}
+@app.put('/lost-pets/{lost_pet_id}', response_model=schemas.LostPet)
+def update_lost_pet_by_id(lost_pet_id: int, lost_pet_in: schemas.LostPetUpdate,
+                          db: Session = Depends(dependencies.get_db)) -> schemas.LostPet:
+    db_lost_pet = crud.get_lost_pet_by_id(db=db, lost_pet_id=lost_pet_id)
+
+    if not db_lost_pet:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Lost Pet not found')
+
+    return crud.update_lost_pet(db=db, db_lost_pet=db_lost_pet, lost_pet_in=lost_pet_in)
 
 
-@app.delete('/destroy/{id}')
-async def remove_lost_pet_by_id():
-    return {}
+@app.delete('/lost-pets/{lost_pet_id}', status_code=status.HTTP_204_NO_CONTENT)
+def remove_lost_pet_by_id(lost_pet_id: int, db: Session = Depends(dependencies.get_db)) -> None:
+    lost_pet = crud.get_lost_pet_by_id(db=db, lost_pet_id=lost_pet_id)
 
+    if not lost_pet:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Lost Pet not found')
 
-@app.post('/found/{id}')
-async def mark_lost_pet_found():
-    return {}
+    crud.remove_lost_pet(db=db, lost_pet_id=lost_pet_id)
